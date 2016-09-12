@@ -37,14 +37,18 @@ int main(int argc, char *argv[]) {
     int ls[3] = {0, 1, 2};
     unsigned int sleep_time = 10000;
 
-    // Set everything to "default" values
     statusLed.setValue(BlackLib::high);
+    std::cout << "Pressione o botão para iniciar\n";
+
+    while (!button.getNumericValue()) {}
+
+    // Set everything to "default" values
     for (int i = 0; i < 3; i++)
         leds[ls[i]].setValue(BlackLib::high);
 
     std::cout << "Executando o programa, pressione o botão para parar!\n";
 
-    while (!button.getNumericValue()) {
+    do {
         if (readAnalog(0) < 2000)
             std::random_shuffle(ls, ls + 3);
         sleep_time = (readAnalog(1) + 500)*100;
@@ -60,7 +64,23 @@ int main(int argc, char *argv[]) {
         leds[ls[1]].setValue(BlackLib::low);
         leds[ls[2]].setValue(BlackLib::high);
         usleep(sleep_time);
-    }
+        leds[ls[0]].setValue(BlackLib::high);
+        leds[ls[1]].setValue(BlackLib::high);
+        leds[ls[2]].setValue(BlackLib::low);
+        usleep(sleep_time);
+        leds[ls[0]].setValue(BlackLib::high);
+        leds[ls[1]].setValue(BlackLib::low);
+        leds[ls[2]].setValue(BlackLib::high);
+        usleep(sleep_time);
+        leds[ls[0]].setValue(BlackLib::low);
+        leds[ls[1]].setValue(BlackLib::high);
+        leds[ls[2]].setValue(BlackLib::high);
+        usleep(sleep_time);
+        leds[ls[0]].setValue(BlackLib::high);
+        leds[ls[1]].setValue(BlackLib::high);
+        leds[ls[2]].setValue(BlackLib::high);
+        usleep(sleep_time);
+    } while (!button.getNumericValue());
 
     std::cout << "Programa encerrado, desligando leds\n";
 
