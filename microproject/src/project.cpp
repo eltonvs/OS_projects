@@ -20,6 +20,48 @@ int readAnalog(int number){
    return number;
 }
 
+void red_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::high);
+    rgb_led[1].setValue(BlackLib::low);
+    rgb_led[2].setValue(BlackLib::low);
+}
+
+void green_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::low);
+    rgb_led[1].setValue(BlackLib::high);
+    rgb_led[2].setValue(BlackLib::low);
+}
+
+void blue_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::low);
+    rgb_led[1].setValue(BlackLib::low);
+    rgb_led[2].setValue(BlackLib::high);
+}
+
+void white_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::high);
+    rgb_led[1].setValue(BlackLib::high);
+    rgb_led[2].setValue(BlackLib::high);
+}
+
+void yellow_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::high);
+    rgb_led[1].setValue(BlackLib::high);
+    rgb_led[2].setValue(BlackLib::low);
+}
+
+void pink_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::high);
+    rgb_led[1].setValue(BlackLib::low);
+    rgb_led[2].setValue(BlackLib::high);
+}
+
+void cyan_light(BlackLib::BlackGPIO (&rgb_led)[3]) {
+    rgb_led[0].setValue(BlackLib::low);
+    rgb_led[1].setValue(BlackLib::high);
+    rgb_led[2].setValue(BlackLib::high);
+}
+
 int main(int argc, char *argv[]) {
     // Button
     BlackLib::BlackGPIO button(BlackLib::GPIO_115, BlackLib::input, BlackLib::SecureMode);
@@ -34,7 +76,16 @@ int main(int argc, char *argv[]) {
         BlackLib::BlackGPIO(BlackLib::GPIO_44,BlackLib::output, BlackLib::SecureMode)
     };
 
-    int ls[3] = {0, 1, 2};
+    void (*functions[])(BlackLib::BlackGPIO (&)[3]) = {
+        red_light,
+        green_light,
+        blue_light,
+        white_light,
+        yellow_light,
+        pink_light,
+        cyan_light
+    };
+
     unsigned int sleep_time = 10000;
 
     statusLed.setValue(BlackLib::high);
@@ -44,49 +95,25 @@ int main(int argc, char *argv[]) {
 
     // Set everything to "default" values
     for (int i = 0; i < 3; i++)
-        leds[ls[i]].setValue(BlackLib::high);
+        leds[i].setValue(BlackLib::high);
 
     std::cout << "Executando o programa, pressione o botão para parar!\n";
 
     do {
         if (readAnalog(0) < 2000)
-            std::random_shuffle(ls, ls + 3);
+            std::random_shuffle(functions, functions + 6);
         sleep_time = (readAnalog(1) + 500)*100;
-        leds[ls[0]].setValue(BlackLib::high);
-        leds[ls[1]].setValue(BlackLib::low);
-        leds[ls[2]].setValue(BlackLib::low);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::low);
-        leds[ls[1]].setValue(BlackLib::high);
-        leds[ls[2]].setValue(BlackLib::low);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::low);
-        leds[ls[1]].setValue(BlackLib::low);
-        leds[ls[2]].setValue(BlackLib::high);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::high);
-        leds[ls[1]].setValue(BlackLib::high);
-        leds[ls[2]].setValue(BlackLib::low);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::high);
-        leds[ls[1]].setValue(BlackLib::low);
-        leds[ls[2]].setValue(BlackLib::high);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::low);
-        leds[ls[1]].setValue(BlackLib::high);
-        leds[ls[2]].setValue(BlackLib::high);
-        usleep(sleep_time);
-        leds[ls[0]].setValue(BlackLib::high);
-        leds[ls[1]].setValue(BlackLib::high);
-        leds[ls[2]].setValue(BlackLib::high);
-        usleep(sleep_time);
+        for (int i = 0; i < 6; i++) {
+            functions[i](leds);
+            usleep(sleep_time);
+        }
     } while (!button.getNumericValue());
 
     std::cout << "Programa encerrado, desligando leds\n";
 
     // Reset everything
     for (int i = 0; i < 3; i++)
-        leds[ls[i]].setValue(BlackLib::low);
+        leds[i].setValue(BlackLib::low);
     statusLed.setValue(BlackLib::low);
 
     return 0;
