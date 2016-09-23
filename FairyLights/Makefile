@@ -6,7 +6,7 @@ BUILDDIR = build
 LIBDIR = lib
 # LIB OPTIONS
 # TARGET
-TARGET = $(BINDIR)/microproject
+TARGET = $(BINDIR)/fairylights
 # EXTENSIONS
 SRCEXT = cpp
 HEADEREXT = hpp
