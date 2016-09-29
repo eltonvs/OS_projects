@@ -1,9 +1,0 @@
-# Ignore Object Files
-*.o
-build/*
-
-# Ignore Compiled Files
-bin/*
-
-# Do not ignore .gikeep files
-!*.gitkeep
