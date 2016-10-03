@@ -18,8 +18,8 @@ disqus:
   id: "beagleprojects"
 
 # URL
-baseurl: ""
-url: "https://eltonviana.com/beagleproject"
+baseurl: "beagleproject"
+url: "https://eltonviana.com"
 
 timezone: America/Sao_Paulo
 permalink: /blog/:title/
