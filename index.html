@@ -1,66 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Elton Viana">
-  <meta name="description" content="Some projects/exercises to work on BeagleBone Black">
-  <title>Beagle Projects</title>
+---
+layout: default
+---
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{% include header.html %}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="dist/css/main.min.css">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-</head>
-
-<body>
-  <header id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6">
-          <h1>Beagle Projects</h1>
-        </div>
-        <div class="col-xs-6 text-right">
-          GitHub Buttons Here
-        </div>
+<div class="list">
+{% if site.posts.size == 0 %}
+  <h2>No post found</h2>
+{% else %}
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+  <div class="list-post">
+    {% if post.link %}
+    <a href="{{ post.link }}">
+    {% else %}
+    <a href="{{ post.url | prepend: site.baseurl }}">
+    {% endif %}
+      <div class="list-post-date">
+        <time>{{ post.date | date_to_string }}</time>
       </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <article>
-      <header>
-        <div class="container">
-          <div class="col-xs-12">
-            <h2>Fairy Lights on BeagleBone Black</h2>
-          </div>
-        </div>
-      </header>
-      <div class="content">
-        <div class="container">
-          <div class="col-xs-12">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare tortor magna, ut venenatis augue tempor vel. Vivamus lobortis nec nisl quis efficitur. Suspendisse felis sem, tempus sit amet fermentum nec, dapibus at dui. Fusce cursus sapien faucibus nibh convallis posuere. Morbi vitae nisi at erat pretium elementum. Proin non semper magna, sed pellentesque lorem. Vestibulum turpis lectus, elementum vitae dui eu, viverra lacinia risus. Curabitur mi diam, consequat a imperdiet a, egestas quis velit. Etiam dictum elit at sagittis laoreet. Aliquam erat volutpat. Nunc cursus in leo sed pellentesque. Nulla facilisi. Curabitur pulvinar scelerisque tincidunt. Phasellus non lectus a quam malesuada faucibus. Sed ultrices bibendum pharetra. Integer vestibulum ante risus, nec scelerisque felis vehicula sit amet.</p>
-
-            <div class="full-width-video">
-              <iframe width="1280" height="720" src="https://www.youtube.com/embed/ptromyXpk8c?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
+      <div class="list-post-title">
+        {{ post.title }}
       </div>
-    </article>
-  </main>
+      {% if post.description %}
+      <div class="list-post-desc">
+        {{ post.description }}
+      </div>
+      {% endif %}
+    </a>
+  </div>
+{% endfor %}
+  <!-- Pagination links -->
+  <div class="list-pagination">
+    <span class="list-pagination-previous">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+          Previous
+        </a>
+      {% endif %}
+    </span>
 
-  <footer id="footer">
-    <div class="container">
-      <p class="copyright text-center">&copy; Copyright 2016 - All Rights reserved. Created by <a href="http://www.eltonviana.com/">Elton Viana</a></p>
-    </div>
-  </footer>
-
-  <!-- Main js -->
-  <script src="dist/js/main.min.js"></script>
-</body>
-</html>
+    <span class="list-pagination-next">
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next">
+          Next
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+    </span>
+  </div>
+{% endif %}
+</div>
