@@ -10,15 +10,15 @@ share: true
 
 
 ### Project Requirements
- - 1 RGB Led
- - 1 Red Led
- - 1 220Ω Resistor
- - 1 1000Ω Resistor
- - 3 100Ω Resistor
- - 1 Button
- - 1 Photosensor
- - 1 Potentiometer
- - 1 BeagleBone Black
+ - 1x RGB Led
+ - 1x Red Led
+ - 1x 220Ω Resistor
+ - 1x 1000Ω Resistor
+ - 3x 100Ω Resistor
+ - 1x Button
+ - 1x Photosensor
+ - 1x Potentiometer
+ - 1x BeagleBone Black
 
 ---
 
@@ -27,6 +27,12 @@ share: true
 <div class="full-width-video">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/ptromyXpk8c?rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
+
+---
+
+If you don't wanna watch the video, there's a sketch:
+
+![BeagleBone Sketch](/assets/images/posts/beaglebone_fairylights_sketch.png)
 
 ---
 
