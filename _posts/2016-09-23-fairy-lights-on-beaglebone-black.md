@@ -32,7 +32,7 @@ share: true
 
 If you don't wanna watch the video, there's a sketch:
 
-![BeagleBone Sketch](/assets/images/posts/beaglebone_fairylights_sketch.png)
+![BeagleBone Sketch]({{ site.baseurl }}/assets/images/posts/beaglebone_fairylights_sketch.png)
 
 ---
 
