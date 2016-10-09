@@ -16,7 +16,7 @@ SOURCES = $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJS = $(patsubst $(SRCDIR)/%, $(BUILDDIR)/%, $(SOURCES:.$(SRCEXT)=.o))
 # COMPILER
 CC = /opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.03_linux/bin/arm-linux-gnueabihf-g++
-#CC = g++
+#CC = arm-linux-gnueabihf-g++
 # FOR CLEANING
 RM = /bin/rm
 # WARNING FLAG

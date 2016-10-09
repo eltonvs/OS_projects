@@ -13,6 +13,10 @@ void white_light(BlackLib::BlackGPIO (&rgb_led)[3]);
 
 void yellow_light(BlackLib::BlackGPIO (&rgb_led)[3]);
 
+void pink_light(BlackLib::BlackGPIO (&rgb_led)[3]);
+
+void cyan_light(BlackLib::BlackGPIO (&rgb_led)[3]);
+
 void turn_off(BlackLib::BlackGPIO (&rgb_led)[3]);
 
 #endif
