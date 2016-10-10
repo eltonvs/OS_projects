@@ -11,5 +11,6 @@ int readAnalog(int number) {
     fs.open(ss.str().c_str(), std::fstream::in);
     fs >> number;
     fs.close();
+
     return number;
 }
