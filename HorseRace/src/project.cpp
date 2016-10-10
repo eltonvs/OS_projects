@@ -14,6 +14,7 @@ extern const int NUMBER_OF_COLORS;
 // Constants
 #define POTENTIOMETER_MAX_VAL 4096
 #define MAX_COMPETITORS 4
+#define RACE_TIME 5
 #define MIN_COMPETITORS 2
 #define LOG_FILE_NAME "run_data.log"
 
@@ -134,10 +135,10 @@ int main(int argc, char *argv[]) {
                 exit(1);
             else if (competitors[i] == 0)
                 // Set competitor's alarm
-                alarm(5);
+                alarm(RACE_TIME);
             else
                 // It's the parent process
-                alarm(6);
+                alarm(RACE_TIME + 1);
         }
     }
 
