@@ -59,10 +59,17 @@ $ sudo su        # To became root
 $ ./horserace  # Execute the binary file
 ```
 
+---
+
 ### Understanding the game...
 
 Before to start the racing, it is necessary to define the quantity of horses, for it we will need to use the Potentiometer, we had define on code that the maximum  and minimum number of horses (2 & 4, respectively). The user will know the number of horses by the RGB led, whether the led is blue, it means that we have 2 horses, whether the led is green, it means that we have 3 horses, and whether the led is red, we will have 4 horses.
 
-After we select the number of horses, it’s time to start the game, so we press the button (the red led will signalize that the Racing has begun). When the Racing is over, the color of the winner will appear on the RGB led (1 – Blue, 2 – Green, 3 – Red, 4 - White).
+After we select the number of horses, it’s time to start the game, so we press the button (the red led will signalize that the Racing has begun). When the Racing is over, the color of the winner will appear on the RGB led.
+
+- Horse 1 - Blue
+- Horse 2 - Green
+- Horse 3 - Red
+- Horse 4 - White
 
 When we press the button to start the Racing, the application will read the quantity of horses that was declared on the potentiometer and will create a process for each horse on the Racing by using `fork()` command. Each process represents  a horse. Each process will generate random numbers (Always positive, to avoid that the horse goes on the wrong direction) and will add these numbers on their respective process during 5 seconds, after 5 seconds the BeagleBone will check in a log file what process will has the greater result and will turn on the winner’s light on the RGB led.
