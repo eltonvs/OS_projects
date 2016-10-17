@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
     while (true) {
         if (getpid() != father) {
             distance += rd()%100;
-            sleep(1);
+            usleep(150000);
         } else {
             // blink status led
             statusLed.TURN_ON;
