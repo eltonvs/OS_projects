@@ -1,4 +1,5 @@
 #include <sstream>
+
 #include <fstream>
 #include "analog.h"
 
@@ -14,3 +15,4 @@ int readAnalog(int number) {
 
     return number;
 }
+
